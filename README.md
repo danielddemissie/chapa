@@ -41,7 +41,7 @@ const initializeInfo = {
 chapa.initialize(initializeInfo)
     .then(response=>{
     console.log(response);
-    /*if payment was successfull response will look like this
+    /*if initialization was successfull response will look like this
         {
         "message": "Hosted Link",
         "status": "success",
