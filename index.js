@@ -17,8 +17,9 @@ function Chapa(chapaKey) {
   this.initialize = function (initializeInfo) {
     const requiredParams = ['email','amount','first_name','last_name','tx_ref','currency'];
     let missingParams = [];
-    missingParams = requiredParams.filter((key)=>!object.hasOwnProperty(key))
-    if(missingParams.length>0) {
+
+    missingParams = requiredParams.filter((key)=>!initializeInfo.hasOwnProperty(key))
+    if(missingParams.length > 0) {
       throw new Error(`The initializeInfo has ${missingParams.length} missing required paramater '${[...missingParams]}'`)
     }  
     return new Promise((resolve, reject) => {
