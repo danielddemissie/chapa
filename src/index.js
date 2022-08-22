@@ -18,13 +18,13 @@ function Chapa(chapaKey) {
  * @returns Promise
  */
 Chapa.prototype.initialize = function (body) {
-  const validateData = (object) => {
+  const validateObj = (object) => {
     let missingParams = [];
     missingParams = this.requiredParams.filter((key)=>!object.hasOwnProperty(key))
     if(missingParams.length>0) throw new Error(`The data has ${missingParams.length} missing required paramater '${[...missingParams]}'`)
   }
 
-  validateData(body)
+  validateObj(body)
   return new Promise((resolve, reject) => {
     fetch(initialize_url, {
       method: 'POST',
