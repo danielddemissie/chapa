@@ -26,7 +26,7 @@ const Chapa  =  require('chapa-node')
 const chapa = new Chapa('chapaKey')
 
 //initialize payment
-const body = {
+const initializeInfo = {
     'amount': '1000',
     'currency': 'ETB',
     'email': 'abebe@kebede.com',
@@ -38,7 +38,7 @@ const body = {
     'customization[description]': 'Pay to my app'
 }
 
-chapa.initialize(body)
+chapa.initialize(initializeInfo)
     .then(response=>{
     console.log(response);
     /*if payment was successfull response will look like this

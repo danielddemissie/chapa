@@ -1,5 +1,5 @@
 const fetch = require('node-fetch');
-
+const request = require('request');
 const initialize_url = 'https://api.chapa.co/v1/transaction/initialize';
 const verify_url = 'https://api.chapa.co/v1/transaction/verify/';
 
@@ -9,22 +9,20 @@ const verify_url = 'https://api.chapa.co/v1/transaction/verify/';
  */
 function Chapa(chapaKey) {
   this.chapaKey = chapaKey;
-  this.requiredParams = ['email','amount','first_name','last_name','tx_ref','currency'];
 }
 
 /**
  * 
- * @param {Object} body customer information and customization
+ * @param {Object} initializeInfo customer information and customization
  * @returns {Promise}
  */
-Chapa.prototype.initialize = function (body) {
-  const validateObj = (object) => {
-    let missingParams = [];
-    missingParams = this.requiredParams.filter((key)=>!object.hasOwnProperty(key))
-    if(missingParams.length>0) throw new Error(`The data has ${missingParams.length} missing required paramater '${[...missingParams]}'`)
-  }
+Chapa.prototype.initialize = function (initializeInfo) {
+  const requiredParams = ['email','amount','first_name','last_name','tx_ref','currency'];
+  let missingParams = [];
+  missingParams = requiredParams.filter((key)=>!object.hasOwnProperty(key))
+  if(missingParams.length>0) {
+    throw new Error(`The initializeInfo has ${missingParams.length} missing required paramater '${[...missingParams]}'`)}
 
-  validateObj(body)
   return new Promise((resolve, reject) => {
     fetch(initialize_url, {
       method: 'POST',
@@ -32,7 +30,7 @@ Chapa.prototype.initialize = function (body) {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.chapaKey,
       },
-      body:JSON.stringify(body)
+      body:JSON.stringify(initializeInfo)
     }).then(async(res)=>{
       if(res.status===200){
         resolve(await res.json())
