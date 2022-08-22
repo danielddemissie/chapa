@@ -56,8 +56,8 @@ chapa.initialize(initializeInfo)
         console.log(error)
     })
 
-//verify payment transaction
-chapa.verify('transaction-refrence')
+//verify payment by transaction refrence
+chapa.verify('tx_ref')
     .then(response=>console.log(response))
     .catch(error=>console.log(error))
 
