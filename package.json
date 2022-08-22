@@ -1,0 +1,14 @@
+{
+  "name": "chapa-sdk-js",
+  "version": "1.0.0",
+  "description": "chapa payment sdk with javaScript",
+  "main": "src/index.js",
+  "author": "daniel <daniel@addissoftware.com>",
+  "license": "MIT",
+  "dependencies": {
+    "node-fetch": "^3.2.10"
+  },
+  "files": [
+    "/src"
+  ]
+}
