@@ -1,5 +1,5 @@
 {
-  "name": "chapa-js",
+  "name": "@danieldeme/chapa-js",
   "version": "1.0.0",
   "description": "chapa payment sdk with javaScript",
   "main": "src/index.js",
