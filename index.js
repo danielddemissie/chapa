@@ -15,7 +15,7 @@ function Chapa(chapaKey) {
 /**
  * 
  * @param {Object} body customer information and customization
- * @returns Promise
+ * @returns {Promise}
  */
 Chapa.prototype.initialize = function (body) {
   const validateObj = (object) => {
@@ -47,7 +47,7 @@ Chapa.prototype.initialize = function (body) {
 /**
  * 
  * @param {string} tnxRef 
- * @returns Promise
+ * @returns {Promise}
  */
 Chapa.prototype.verify = function(tnxRef){
   if(!tnxRef) throw new Error('Transaction refrence is required!')
@@ -57,8 +57,7 @@ Chapa.prototype.verify = function(tnxRef){
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.chapaKey,
-      },
-      body:JSON.stringify(data)
+      }
     }).then(async(res)=>{
       if(res.status===200){
         resolve(await res.json())
