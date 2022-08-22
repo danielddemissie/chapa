@@ -33,6 +33,8 @@ function Chapa(chapaKey) {
       }).then(async(res)=>{
         if(res.status===200){
           resolve(await res.json())
+        }else{
+          reject(await res.json())
         }
       }).catch((error)=>{
         reject(error)
@@ -58,6 +60,8 @@ function Chapa(chapaKey) {
       }).then(async(res)=>{
         if(res.status===200){
           resolve(await res.json())
+        }else{
+          reject(await res.json())
         }
       }).catch((error)=>{
         reject(error)
