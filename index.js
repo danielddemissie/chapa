@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 
 const initialize_url = 'https://api.chapa.co/v1/transaction/initialize';
-const verify_url = 'https://api.chapa.co/v1/transaction/initialize';
+const verify_url = 'https://api.chapa.co/v1/transaction/verify/';
 
 /**
  *
@@ -52,7 +52,7 @@ Chapa.prototype.initialize = function (body) {
 Chapa.prototype.verify = function(tnxRef){
   if(!tnxRef) throw new Error('Transaction refrence is required!')
   return new Promise((resolve,reject)=>{
-    fetch(verify_url, {
+    fetch(verify_url+tnxRef, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
