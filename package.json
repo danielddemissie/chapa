@@ -1,9 +1,9 @@
 {
   "name": "chapa-node",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Chapa payment sdk node",
   "main": "index.js",
-  "homepage": "https://github.com/danielddemissie/chapa.js",
+  "homepage": "https://github.com/danielddemissie/chapa",
   "author": "daniel <daniel@addissoftware.com>",
   "license": "MIT",
   "dependencies": {
