@@ -2,7 +2,6 @@ const fetch = require('node-fetch');
 
 const initialize_url = 'https://api.chapa.co/v1/transaction/initialize';
 const verify_url = 'https://api.chapa.co/v1/transaction/initialize';
-const callback_url = 'https://chapa.co';
 
 /**
  *
@@ -10,10 +9,22 @@ const callback_url = 'https://chapa.co';
  */
 function Chapa(chapaKey) {
   this.chapaKey = chapaKey;
+  this.requiredParams = ['email','amount','first_name','last_name','tx_ref','currency'];
 }
 
-Chapa.prototype.initialize = function (options) {
-  //varify all required fields are passed options
+/**
+ * 
+ * @param {Object} body customer information and customization
+ * @returns Promise
+ */
+Chapa.prototype.initialize = function (body) {
+  const validateData = (object) => {
+    let missingParams = [];
+    missingParams = this.requiredParams.filter((key)=>!object.hasOwnProperty(key))
+    if(missingParams.length>0) throw new Error(`The data has ${missingParams.length} missing required paramater '${[...missingParams]}'`)
+  }
+
+  validateData(body)
   return new Promise((resolve, reject) => {
     fetch(initialize_url, {
       method: 'POST',
@@ -21,7 +32,7 @@ Chapa.prototype.initialize = function (options) {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.chapaKey,
       },
-      body:JSON.stringify(options)
+      body:JSON.stringify(body)
     }).then(async(res)=>{
       if(res.status===200){
         resolve(await res.json())
@@ -33,6 +44,11 @@ Chapa.prototype.initialize = function (options) {
 };
 
 
+/**
+ * 
+ * @param {string} tnxRef 
+ * @returns Promise
+ */
 Chapa.prototype.verify = function(tnxRef){
   if(!tnxRef) throw new Error('Transaction refrence is required!')
   return new Promise((resolve,reject)=>{
@@ -42,7 +58,7 @@ Chapa.prototype.verify = function(tnxRef){
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ' + this.chapaKey,
       },
-      body:JSON.stringify(options)
+      body:JSON.stringify(data)
     }).then(async(res)=>{
       if(res.status===200){
         resolve(await res.json())
