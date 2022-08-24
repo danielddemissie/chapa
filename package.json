@@ -1,6 +1,6 @@
 {
   "name": "chapa-node",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Chapa payment sdk node",
   "main": "index.js",
   "homepage": "https://github.com/danielddemissie/chapa",
@@ -11,7 +11,9 @@
   },
   "keywords": [
     "chapa",
-    "chapa-node"
+    "chapa-node",
+    "chapasdk",
+    "chapanode"
   ],
   "files": [
     "index.js"
