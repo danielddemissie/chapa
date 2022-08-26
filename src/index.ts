@@ -19,9 +19,10 @@ interface ICustomerInfo {
   last_name: string;
   email: string;
   tx_ref: string;
+  currency: string;
 }
 
-class Chapa {
+export default class Chapa {
   private chapaKey: string;
   private initializeInfo: any;
 
@@ -104,5 +105,3 @@ class Chapa {
     });
   }
 }
-
-export default Chapa;
