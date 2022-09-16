@@ -1,9 +1,6 @@
 const fetch = require("node-fetch");
 
-const initializeUrl = "https://api.chapa.co/v1/transaction/initialize";
-const verifyUrl = "https://api.chapa.co/v1/transaction/verify/";
-const transferUrl = "https://api.chapa.co/v1/transfers";
-const banksUrl = "https://api.chapa.co/v1/banks";
+const chapaUrl = "https://api.chapa.co/v1";
 
 /**
  *
@@ -62,7 +59,7 @@ module.exports.Chapa = function (chapaKey) {
     return new Promise((resolve, reject) => {
       const paylodad = { ...initializeInfo, customization };
       console.log(paylodad);
-      fetch(initializeUrl, {
+      fetch(`${chapaUrl}/transaction/initialize`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -92,7 +89,7 @@ module.exports.Chapa = function (chapaKey) {
     if (!tnxRef) throw new Error("Transaction refrence is required!");
 
     return new Promise((resolve, reject) => {
-      fetch(verifyUrl + tnxRef, {
+      fetch(`${chapaUrl}/transaction/verify/${tnxRef}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -141,7 +138,7 @@ module.exports.Chapa = function (chapaKey) {
     }
 
     return new Promise((resolve, reject) => {
-      fetch(transferUrl, {
+      fetch(`${chapaUrl}/transfers`, {
         method: "POST",
         Authorization: "Bearer " + chapaKey,
         body: JSON.stringify(transferInfo),
@@ -165,7 +162,7 @@ module.exports.Chapa = function (chapaKey) {
    */
   this.getBanks = function () {
     return new Promise((resolve, reject) => {
-      fetch(banksUrl, {
+      fetch(`${chapaUrl}/banks`, {
         method: "GET",
         Authorization: "Bearer " + chapaKey,
       })
