@@ -6,7 +6,7 @@ const chapaUrl = "https://api.chapa.co/v1";
  *
  * @param {string} chapaKey
  */
-module.exports.Chapa = function (chapaKey) {
+module.exports = function Chapa(chapaKey) {
   var chapaKey = chapaKey;
   var customization = {};
 
