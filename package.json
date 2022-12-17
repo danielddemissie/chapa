@@ -4,16 +4,11 @@
   "description": "Chapa payment sdk node",
   "main": "build/index.js",
   "types": "build/index.d.ts",
-  "homepage": "https://github.com/danielddemissie/chapa.git#readme",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/danielddemissie/chapa.git"
-  },
-  "bugs": {
-    "url": "https://github.com/danielddemissie/chapa.git/issues"
-  },
   "author": "daniel <daniel@addissoftware.com>",
   "license": "MIT",
+  "files": [
+    "build/**/*"
+  ],
   "scripts": {
     "start": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
     "build": "tsc",
@@ -26,6 +21,14 @@
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danielddemissie/chapa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/danielddemissie/chapa.git/issues"
+  },
+  "homepage": "https://github.com/danielddemissie/chapa.git#readme",
   "dependencies": {
     "@types/uuid": "^9.0.0",
     "axios": "^1.2.1",
@@ -36,9 +39,6 @@
     "chapa-node",
     "chapasdk",
     "chapanode"
-  ],
-  "files": [
-    "build/**/*"
   ],
   "devDependencies": {
     "@types/jest": "^29.2.4",
