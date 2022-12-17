@@ -121,12 +121,7 @@ class Chapa implements ChapaType {
         },
       })
         .then((response) => {
-          console.log('response===> ', response);
-          if (response.status === 200) {
-            resolve(response.data);
-          } else {
-            reject(response.data);
-          }
+          response.status === 200 ? resolve(response.data) : reject(response.data);
         })
         .catch((error) => {
           reject(error);
