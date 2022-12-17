@@ -51,10 +51,10 @@ describe('Chapa test-cases', () => {
     expect(initializeInfo).rejects.toThrow();
   });
 
-  it('verify fn resolve with tx_ref', () => {
+  it('verify fn rejects with wrong tx_ref', () => {
     const verify = chapa.verify('tx_ref');
 
-    expect(verify).resolves.not.toThrow();
+    expect(verify).rejects.toThrow();
   });
 
   it('initialize fn reject with wrong transfer info', () => {
