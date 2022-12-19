@@ -43,6 +43,14 @@ class Chapa implements ChapaType {
 
   /**
    *
+   * @returns uuid txRef
+   */
+  generateTxRef() {
+    return uuid();
+  }
+
+  /**
+   *
    * @param initializeInfo
    * @param initializeOptions
    * @returns

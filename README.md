@@ -19,7 +19,10 @@ Or yarn
 ## Usage
 
 ```javascript
-const Chapa = require("chapa-node");
+import Chapa from "chapa-node";
+
+//or
+const {default:Chapa} = require("chapa-node");
 
 const chapa = new Chapa("chapaKey");
 
@@ -44,6 +47,66 @@ const initializeInfo = {
 
 chapa
   .initialize(initializeInfo)
+  .then((response) => {
+    console.log(response);
+    /*if initialization was successfull response will look like this
+        {
+        "message": "Hosted Link",
+        "status": "success",
+        "data": {
+            "checkout_url": "https://checkout.chapa.co/checkout/payment/27291184910"
+        }
+
+        redirect users to this 'checkout_url' to complete the transaction
+    */
+  })
+  .catch((error) => {
+    console.log(error);
+});
+
+  //generate auto tx_ref
+chapa.initialize(initializeInfo,{autoTx_ref:true})
+
+//or use chapa.genrateTxRef() to store the tx_ref
+const tx_ref = chapa.generateTxRef();
+
+const initializeInfo = {
+  amount: "1000",
+  currency: "ETB",
+  email: "abebe@kebede.com",
+  first_name: "Abebe",
+  last_name: "Kebede",
+  tx_ref:tx_ref,
+  return_url: "the return url after payment",
+  callback_url: "https://myapp.com/my-verify-endpoint/:tx_ref",
+};
+
+  //subaccount
+
+  //create
+  const subaccountId = chapa.createSubAccount({
+      bank_code: '32735b19-bb36-4cd7-b226-fb7451cd98f0',
+      business_name: 'shaka',
+      account_name: 'shaka',
+      account_number: '12345678',
+      split_type: 'flat',
+      split_value: 2,
+    });
+
+  // you can store this subAccount id for future use
+
+  //split payment with subAccount
+  const subAccountInfo = {
+  id:"_id",
+  /*The id enough but you can also override the default setting
+  like splity type and split value like this
+      split_type:"flat",
+      split_value:20
+  */
+};
+
+chapa
+  .initialize({...initializeInfo,...subAccountInfo})
   .then((response) => {
     console.log(response);
     /*if initialization was successfull response will look like this

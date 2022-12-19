@@ -50,6 +50,7 @@ export interface ChapaType {
   chapaKey: string;
   customization: CustomizationInfo;
 
+  generateTxRef: () => string;
   customize: (customizationInfo: CustomizationInfo) => any;
   initialize: (initializeInfo: InitializeInfo, initializeOptions: InitializeOptions) => Promise<InitializeResponse>;
   verify: (tnxRef: string) => any;
