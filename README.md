@@ -96,20 +96,20 @@ const initializeInfo = {
   // you can store this subAccount id for future use
 
   //split payment with subAccount
-  const subAccountInfo = {
-  id:"_id",
-  /*The id enough but you can also override the default setting
-  like splity type and split value like this
+  const subAccountsInfo = [{
+  id:subaccountId,
+  /*The id is enough but you can also override the default setting
+  like split type and split value like this
       split_type:"flat",
       split_value:20
   */
-};
+}];
 
 chapa
-  .initialize({...initializeInfo,...subAccountInfo})
+  .initialize({...initializeInfo,subaccounts:subAccountsInfo})
   .then((response) => {
     console.log(response);
-    /*if initialization was successfull response will look like this
+    /*if initialization was successfull the response will look like this
         {
         "message": "Hosted Link",
         "status": "success",
@@ -128,7 +128,7 @@ chapa
 chapa
   .verify("tx_ref")
   .then((response) =>
-    /*after verifing the transaction do your logic.*/ console.log(response)
+    /*after verifing the transaction, do your logic.*/ console.log(response)
   )
   .catch((error) => console.log(error));
 
