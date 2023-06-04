@@ -13,6 +13,7 @@ export interface InitializeInfo {
   currency: string;
   return_url?: string;
   callback_url: string;
+  subaccounts?: SubAccount[];
 }
 
 export interface TransferInfo {
@@ -31,7 +32,7 @@ export interface InitializeResponse {
     checkout_url: string;
   };
 }
-export interface SubAccount {
+export interface ICreateSubAccount {
   business_name: string;
   account_name: string;
   bank_code: string;
@@ -56,4 +57,10 @@ export interface ChapaType {
   verify: (tnxRef: string) => any;
   transfer: (transferInfo: TransferInfo) => any;
   getBanks: () => any;
+}
+
+export interface SubAccount {
+  id: string;
+  transaction_charge?: number;
+  split_type?: SplitType;
 }

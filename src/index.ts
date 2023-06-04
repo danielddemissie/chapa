@@ -5,7 +5,7 @@ import {
   InitializeInfo,
   InitializeResponse,
   TransferInfo,
-  SubAccount,
+  ICreateSubAccount,
   InitializeOptions,
 } from './types';
 import { v4 as uuid } from 'uuid';
@@ -189,7 +189,7 @@ class Chapa implements ChapaType {
    *
    * @returns
    */
-  createSubAccount(subaccount: SubAccount) {
+  createSubAccount(subaccount: ICreateSubAccount) {
     const requiredParams = [
       'business_name',
       'account_name',
