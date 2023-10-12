@@ -61,7 +61,7 @@ class Chapa implements ChapaType {
       autoTx_ref: false,
     },
   ) {
-    const requiredParams = ['email', 'amount', 'first_name', 'tx_ref', 'last_name', 'currency'];
+    const requiredParams = ['amount', 'first_name', 'tx_ref', 'last_name', 'currency'];
     if (initializeOptions.autoTx_ref) {
       requiredParams.splice(3, 1);
     }
